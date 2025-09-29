@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: 여기에 코드를 입력합니다.
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
+    
     // GDI+ 초기화
     ULONG_PTR Token;
     Gdiplus::GdiplusStartupInput StartupInput;
@@ -165,7 +165,37 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            Gdiplus::Graphics GraphicsInstance(hdc);    // Graphics객체 만들기
+
+            Gdiplus::SolidBrush RedBrush(Gdiplus::Color(255, 255, 0, 0));
+            GraphicsInstance.FillRectangle(&RedBrush, 200, 50, 60, 120);
+            
+            Gdiplus::Pen BluePen(Gdiplus::Color(255,0,0,255), 2.0f);
+            GraphicsInstance.DrawEllipse(&BluePen, 50, 250, 60, 60);
+
+            Gdiplus::SolidBrush BlueBrush(Gdiplus::Color(255, 0, 0, 255));
+            Gdiplus::Point Triangle[3] = {
+                Gdiplus::Point(100,50),
+                Gdiplus::Point(50,100),
+                Gdiplus::Point(150,100)
+            };
+            GraphicsInstance.FillPolygon(&BlueBrush, Triangle, 3);
+
+            GraphicsInstance.DrawRectangle(&BluePen, 70, 100, 60, 50);
+
+            GraphicsInstance.FillPie(&RedBrush, 300, 50, 50, 50, 0.0f, 120.0f);
+
+            Gdiplus::GraphicsPath Path;
+            Path.AddLine(Gdiplus::Point(10, 10), Gdiplus::Point(300, 10));
+            Path.AddLine(Gdiplus::Point(300, 10), Gdiplus::Point(300, 100));
+            GraphicsInstance.FillPath(&BlueBrush, &Path);
+
+            // 1. 파란색 원 그리기
+            // 2. 기타 도형 그려보기
+            // 3. 집 모양 만들어보기
+
             EndPaint(hWnd, &ps);
         }
         break;
