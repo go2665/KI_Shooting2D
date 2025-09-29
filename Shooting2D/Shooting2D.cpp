@@ -32,6 +32,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // TODO: 여기에 코드를 입력합니다.
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+    // GDI+ 초기화
+    ULONG_PTR Token;
+    Gdiplus::GdiplusStartupInput StartupInput;
+    Gdiplus::GdiplusStartup(&Token, &StartupInput, nullptr); 
+
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_SHOOTING2D, szWindowClass, MAX_LOADSTRING);
@@ -58,6 +63,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    // GDI+ 정리하기
+    Gdiplus::GdiplusShutdown(Token);    
     return (int) msg.wParam;
 }
 
