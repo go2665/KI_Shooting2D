@@ -18,7 +18,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 HWND g_hMainWindow = nullptr;
 
 Gdiplus::Point g_AppPosition(2000, 100);
-Gdiplus::Point g_ScreenSize(800, 600);
+Gdiplus::Point g_ScreenSize(600, 800);
 
 Gdiplus::Point g_HousePosition(100,100);
 constexpr int g_HouseVerticesCount = 7;
@@ -201,9 +201,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 Gdiplus::SolidBrush BlueBrush(Gdiplus::Color(255, 0, 0, 255));
                 Gdiplus::SolidBrush YelloBrush(Gdiplus::Color(255, 255, 255, 0));
 
-                for (int y = 0; y < 13; y++)
+                for (int y = 0; y < 16; y++)
                 {
-                    for (int x = 0; x < 17; x++)
+                    for (int x = 0; x < 12; x++)
                     {
                         g_BackBufferGraphics->FillRectangle(&YelloBrush, 50 * x, 50 * y, 5, 5);
                     }

@@ -2,6 +2,9 @@
 
 Player::Player(const wchar_t* InImagePath)
 {
+    Position.X = 300;
+    Position.Y = 700;
+
     KeyWasPressedMap[InputDirection::Up] = false;
     KeyWasPressedMap[InputDirection::Down] = false;
     KeyWasPressedMap[InputDirection::Left] = false;
@@ -34,7 +37,8 @@ void Player::Render(Gdiplus::Graphics* InGraphics)
         // g_PlayerImage가 로딩되어 있다.
         InGraphics->DrawImage(
             Image,          // 그려질 이미지
-            100, 100,       // 그려질 위치
+            static_cast<int>(Position.X - PixelSize * Pivot.X),    // 그려질 위치
+            static_cast<int>(Position.Y - PixelSize * Pivot.Y),
             PixelSize, PixelSize);  // 그려질 사이즈
     }
     else
@@ -49,8 +53,27 @@ void Player::Render(Gdiplus::Graphics* InGraphics)
 
 void Player::HandleKeyState(WPARAM InKey, bool InIsPressed)
 {
-    if (InKey == VK_UP || InKey == VK_DOWN || InKey == VK_LEFT || InKey == VK_RIGHT)
+    if (InKey == VK_LEFT || InKey == VK_RIGHT)
     {
         KeyWasPressedMap[static_cast<InputDirection>(InKey)] = InIsPressed;
+
+        if (InKey == VK_LEFT)
+        {
+            Position.X -= Speed;
+            if (Position.X < (0 + PixelSize))
+            {
+                Position.X = 0 + PixelSize;
+            }
+            InvalidateRect(g_hMainWindow, nullptr, FALSE);
+        }
+        else if (InKey == VK_RIGHT)
+        {
+            Position.X += Speed;
+            if ((g_ScreenSize.X - PixelSize) < Position.X)
+            {
+                Position.X = g_ScreenSize.X - PixelSize;
+            }
+            InvalidateRect(g_hMainWindow, nullptr, FALSE);
+        }
     }
 }
