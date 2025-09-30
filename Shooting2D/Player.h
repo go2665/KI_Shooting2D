@@ -39,3 +39,6 @@ private:
 	Gdiplus::Bitmap* Image = nullptr;   // 플레이어가 그려질 종이		
 };
 
+// 실습
+// 1. 플레이어의 움직임이 좌우로 서로 순환되게 만들기
+// 2.

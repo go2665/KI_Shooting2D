@@ -71,7 +71,7 @@ void Player::HandleKeyState(WPARAM InKey, bool InIsPressed)
             Position.X += Speed;
             if ((g_ScreenSize.X - PixelSize) < Position.X)
             {
-                Position.X = g_ScreenSize.X - PixelSize;
+                Position.X = static_cast<float>(g_ScreenSize.X - PixelSize);
             }
             InvalidateRect(g_hMainWindow, nullptr, FALSE);
         }

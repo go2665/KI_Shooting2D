@@ -73,13 +73,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 3. 메시지 루프
     // 기본 메시지 루프입니다:(메세지 큐에 들어온 메세지들을 하나씩 처리하는 부분)
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키 처리
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg); // 메시지를 메시지 프로시저로 보내 메시지를 처리한다.
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT) // 종료 메시지가 나오면 그냥 종료
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키 처리
+            {
+                TranslateMessage(&msg); // 메시지를 메시지 프로시저로 보내 메시지를 처리한다.
+                DispatchMessage(&msg);
+            }
         }
+
+
     }
 
     delete g_Player;
