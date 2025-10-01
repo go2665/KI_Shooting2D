@@ -1,14 +1,10 @@
 #pragma once
 #include <unordered_map>
-#include <Windows.h>
-#include <gdiplus.h>
+#include "Common.h"
 #include "enums.h"
 
 // extern : 뒤에 있는 변수가 다른 파일에 선언이 되어 있다.
-extern HWND g_hMainWindow; // g_hMainWindow가 다른 파일에 있다는 것을 알려줌
-extern Gdiplus::Point g_ScreenSize;
 
-using PointF = Gdiplus::PointF;
 class Player
 {
 public:
@@ -16,6 +12,7 @@ public:
 	Player(const wchar_t* InImagePath);	// 무조건 파일 경로를 받아야 생성할 수 있다.
 	~Player();
 
+	void Tick(float InDeltaTime);
 	void Render(Gdiplus::Graphics* InGraphics);
 	void HandleKeyState(WPARAM InKey, bool InIsPressed);
 
@@ -30,7 +27,7 @@ private:
 	PointF Position = { 0.0f, 0.0f };
 
 	// 플레이어의 이동 속도
-	float Speed = 10.0f;
+	float Speed = 200.0f;
 
 	// 플레이어 키 입력 상태
 	std::unordered_map<InputDirection, bool> KeyWasPressedMap;
@@ -38,7 +35,3 @@ private:
 	// 플레이어 이미지가 들어있을 비트맵
 	Gdiplus::Bitmap* Image = nullptr;   // 플레이어가 그려질 종이		
 };
-
-// 실습
-// 1. 플레이어의 움직임이 좌우로 서로 순환되게 만들기
-// 2.

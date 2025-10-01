@@ -31,6 +31,7 @@ Gdiplus::Bitmap* g_BackBuffer = nullptr;    // 백버퍼용 종이
 Gdiplus::Graphics* g_BackBufferGraphics = nullptr;  // 백버퍼용 종이에 그리기 위한 도구
 
 Player* g_Player = nullptr;
+Background* g_Background = nullptr;
 
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
@@ -55,6 +56,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Gdiplus::GdiplusStartupInput StartupInput;
     Gdiplus::GdiplusStartup(&Token, &StartupInput, nullptr); 
     g_Player = new Player(L"./Images/Airplane.png");
+    g_Background = new Background(L"./Images/Background.png");
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -70,6 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_SHOOTING2D));
 
     MSG msg;
+    ULONGLONG LastTime = GetTickCount64();
 
     // 3. 메시지 루프
     // 기본 메시지 루프입니다:(메세지 큐에 들어온 메세지들을 하나씩 처리하는 부분)
@@ -87,9 +90,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             }
         }
 
+        ULONGLONG CurrentTime = GetTickCount64();
+        float DeltaTime = (CurrentTime - LastTime) / 1000.0f;   // 결과를 초 단위로 변경
+        LastTime = CurrentTime;
 
+        g_Background->Tick(DeltaTime);
+        g_Player->Tick(DeltaTime);
+
+        InvalidateRect(g_hMainWindow, nullptr, FALSE); // 매 프레임마다 WM_PAINT요청
     }
 
+    delete g_Background;
+    g_Background = nullptr;
     delete g_Player;
     g_Player = nullptr;
     // GDI+ 정리하기
@@ -209,11 +221,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 Gdiplus::SolidBrush BlueBrush(Gdiplus::Color(255, 0, 0, 255));
                 Gdiplus::SolidBrush YelloBrush(Gdiplus::Color(255, 255, 255, 0));
 
+                g_Background->Render(g_BackBufferGraphics);
+
                 for (int y = 0; y < 16; y++)
                 {
                     for (int x = 0; x < 12; x++)
                     {
-                        g_BackBufferGraphics->FillRectangle(&YelloBrush, 50 * x, 50 * y, 5, 5);
+                        g_BackBufferGraphics->FillRectangle(&BlueBrush, 50 * x, 50 * y, 5, 5);
                     }
                 }
 
@@ -225,7 +239,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
                 g_BackBufferGraphics->DrawPolygon(&GreenPen, Positions, g_HouseVerticesCount);
                 //g_BackBufferGraphics->FillPolygon(&GreenBrush, Positions, g_HouseVerticesCount);
-                               
+                              
+                
                 g_Player->Render(g_BackBufferGraphics);
 
                 Gdiplus::Graphics GraphicsInstance(hdc);    // Graphics객체 만들기(hdc에 그리기 위한 도구 만들기)
