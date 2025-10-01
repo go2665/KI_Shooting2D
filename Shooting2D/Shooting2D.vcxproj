@@ -132,12 +132,16 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shooting2D.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestGridActor.h" />
+    <ClInclude Include="TestHouseActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Shooting2D.cpp" />
+    <ClCompile Include="TestGridActor.cpp" />
+    <ClCompile Include="TestHouseActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Shooting2D.rc" />
