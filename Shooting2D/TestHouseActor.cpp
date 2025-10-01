@@ -10,7 +10,7 @@ TestHouseActor::TestHouseActor()
     {
         if (Max < Pos.X)
         {
-            Max = Pos.X;
+            Max = static_cast<int>(Pos.X);
         }
     }
     Size = Max;

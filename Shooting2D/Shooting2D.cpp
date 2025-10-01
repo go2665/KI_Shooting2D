@@ -99,6 +99,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         InvalidateRect(g_hMainWindow, nullptr, FALSE); // 매 프레임마다 WM_PAINT요청
     }
 
+    //GameManager a;
+
+
     delete g_TestHouseActor;
     g_TestHouseActor = nullptr;
     delete g_TestGridActor;
