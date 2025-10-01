@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 #include <cstdint>
 
 enum class InputDirection : uint8_t

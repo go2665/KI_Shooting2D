@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="enums.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Shooting2D.cpp" />
