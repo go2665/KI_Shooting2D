@@ -1,10 +1,11 @@
 #include "TestGridActor.h"
+#include "GameManager.h"
 
 TestGridActor::TestGridActor()
     :Actor(nullptr)
 {
-    WindowWidth = g_ScreenSize.X;
-    WindowHeight = g_ScreenSize.Y;
+    WindowWidth = GameManager::ScreenWidth;
+    WindowHeight = GameManager::ScreenHeight;
 
     Size = 5;
     HalfSize = Size / 2;

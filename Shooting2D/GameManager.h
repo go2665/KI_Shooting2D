@@ -9,17 +9,39 @@
 class GameManager
 {
 public:
+	static GameManager& Get()
+	{
+		static GameManager instance;
+		return instance;
+	}
 	void Initialize();
 	void Destroy();
 	void Tick(float InDeltaTime);
-	void Render(Gdiplus::Graphics* InGraphics);
+	void Render();
 	void HandleKeyState(WPARAM InKey, bool InIsPressed);
 
-	static constexpr unsigned int ScrrenWidth = 600;
-	static constexpr unsigned int ScrrenHeight = 800;
+	void AddActor(Actor* InActor) { Actors.push_back(InActor); }
+
+	static constexpr unsigned int ScreenWidth = 600;
+	static constexpr unsigned int ScreenHeight = 800;
 	static constexpr unsigned int ActorDefaultSize = 64;
+
+	// Getter
+	inline const HWND GetMainWindowHandle() const { return hMainWindow; }
+	inline const Point& GetAppPosition() const { return AppPosition; }
+	inline Gdiplus::Bitmap* GetBackBuffer() const { return BackBuffer; }
+
+	// Setter
+	inline void SetMainWindowHandle(HWND InWindowHandle) { 
+		if (hMainWindow == nullptr)
+		{
+			hMainWindow = InWindowHandle;	// 딱 한번만 설정할 수 있는 세터
+		}
+	}
 protected:
 private:
+	// Singleton : 클래스의 인스턴스가 1개만 있는 클래스. 
+	// private에 생성자를 넣어서 밖에서 인스턴스화 하는 것을 원천적으로 봉쇄
 	GameManager() = default;
 	virtual ~GameManager() = default;
 	GameManager(const GameManager&) = delete;	// 복사 생성자 삭제

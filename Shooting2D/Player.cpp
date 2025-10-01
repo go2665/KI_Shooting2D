@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Common.h"
+#include "GameManager.h"
 
 Player::Player(const wchar_t* InImagePath)
     : Actor(InImagePath)
@@ -27,9 +28,9 @@ void Player::OnTick(float InDeltaTime)
 
     if (Position.X < (0 - Size * 0.5f))
     {
-        Position.X = g_ScreenSize.X + Size * 0.5f; // 순환 이동
+        Position.X = GameManager::ScreenWidth + Size * 0.5f; // 순환 이동
     }
-    else if ((g_ScreenSize.X + Size * 0.5f) < Position.X)
+    else if ((GameManager::ScreenWidth + Size * 0.5f) < Position.X)
     {
         Position.X = static_cast<float>(0 - Size * 0.5f);
     }
