@@ -14,7 +14,9 @@ void GameManager::Initialize()
         MessageBox(hMainWindow, L"백 버퍼 그래픽스 생성 실패", L"오류", MB_OK | MB_ICONERROR);
     }
 
-    AddActor(new Background(L"./Images/Background.png"));
+    Background* background = new Background(L"./Images/Background.png");
+    background->SetRenderLayer(RenderLayer::Background);
+    AddActor(background);
     MainPlayer = new Player(L"./Images/Airplane.png");
     AddActor(MainPlayer);
     AddActor(new TestGridActor());

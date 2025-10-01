@@ -20,6 +20,7 @@ public:
 	inline void SetPosition(float InX, float InY) { Position.X = InX; Position.Y = InY; }
 	inline void SetSize(int InSize) { Size = InSize; }
 	inline void SetPivot(float InX, float InY) { Pivot.X = InX; Pivot.Y = InY; }
+	inline void SetRenderLayer(RenderLayer InLayer) { TargetRenderLayer = InLayer; }
 
 protected:
 	// 위치
@@ -33,6 +34,9 @@ protected:
 
 	// 이미지가 들어있을 비트맵
 	Gdiplus::Bitmap* Image = nullptr;   // 플레이어가 그려질 종이		
+
+	// 이미지가 그려질 레이어
+	RenderLayer TargetRenderLayer = RenderLayer::Misc;
 
 };
 

@@ -10,3 +10,13 @@ enum class InputDirection : uint8_t
 	Left = VK_LEFT,
 	Right = VK_RIGHT
 };
+
+enum class RenderLayer
+{
+	Background = 0,
+	Player,
+	Bomb,
+	UI,
+	Test,
+	Misc
+};
