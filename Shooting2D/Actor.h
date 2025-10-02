@@ -1,5 +1,8 @@
 #pragma once
+#include <type_traits>
+#include <vector>
 #include "Common.h"
+#include "Component.h"
 
 class Actor
 {
@@ -14,6 +17,32 @@ public:
 	virtual void OnDestroy() {};
 	virtual void OnTick(float InDeltaTime);
 	virtual void OnRender(Gdiplus::Graphics* InGraphics);
+
+	virtual void OnOverlap(Actor* InOther) {};	// 다른 액터와 겹쳤을 때 자동호출 되는 함수
+
+	void AddComponent(Component* InComponent);
+	void RemoveComponent(Component* InComponent);
+
+	template<typename T>
+	T* GetComponent() const
+	{
+		static_assert(std::is_base_of<Component, T>::value, "T must be derived from Component");
+		for (auto comp : Components)
+		{
+			T* castComp = dynamic_cast<T*>(comp);
+			if (castComp)
+			{
+				return castComp;
+			}
+		}
+		return nullptr;
+	}
+	template<typename T>
+	bool HasComponent() const
+	{
+		return GetComponent<T>() != nullptr;
+	}
+	
 
 	// Getter
 	inline const PointF& GetPosition() const { return Position; }
@@ -31,6 +60,9 @@ protected:
 	// 위치
 	PointF Position = { 0.0f, 0.0f };
 
+	// 각도
+	float Angle = 0.0f;
+
 	// 크기
 	int Size = 64;
 
@@ -42,6 +74,9 @@ protected:
 
 	// 이미지가 그려질 레이어
 	RenderLayer TargetRenderLayer = RenderLayer::Misc;
+
+	// 이 액터에 속한 컴포넌트들
+	std::vector<Component*> Components;
 
 private:
 	bool IsPendingDestroy = false;		// 삭제 예정인 액터인지 표시

@@ -18,6 +18,7 @@ void ResourceManager::Initialize()
     LoadResourceFromFile(ResourceID::Number8, L"./Images/Number8.png");
     LoadResourceFromFile(ResourceID::Number9, L"./Images/Number9.png");
     LoadResourceFromFile(ResourceID::Dot, L"./Images/Dot.png");
+    LoadResourceFromFile(ResourceID::Test, L"./Images/Test.png");
 }
 
 void ResourceManager::Destroy()

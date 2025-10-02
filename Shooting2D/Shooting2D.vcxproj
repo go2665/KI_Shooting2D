@@ -126,16 +126,19 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shooting2D.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestCollisionActor.h" />
     <ClInclude Include="TestGridActor.h" />
     <ClInclude Include="TestHouseActor.h" />
   </ItemGroup>
@@ -143,9 +146,11 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shooting2D.cpp" />
+    <ClCompile Include="TestCollisionActor.cpp" />
     <ClCompile Include="TestGridActor.cpp" />
     <ClCompile Include="TestHouseActor.cpp" />
   </ItemGroup>

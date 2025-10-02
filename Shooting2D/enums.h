@@ -38,5 +38,25 @@ enum class ResourceID : uint8_t
 	Number8,
 	Number9,
 	Dot,
+	Test,
 	// 이미지가 추가되면 enum 추가
+};
+
+enum class CollisionType
+{
+	Circle,
+	Rectangle
+};
+
+enum class PhysicsLayer
+{
+	None = 0,
+	Player,
+	Bomb
+};
+
+enum class GameState
+{
+	Playing,
+	GameOver
 };
