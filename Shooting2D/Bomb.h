@@ -17,7 +17,7 @@ public:
 	void SetDropAcceleration(float newAcceleration) { dropAcceleration = newAcceleration; }
 
 private:		
-	float dropAcceleration = 200.0f; // ë“œë ê°€ì†ë„(ì´ˆë‹¹ í”½ì…€ ë‹¨ìœ„)
-	float dropSpeed = 0.0f; // í˜„ì¬ ë“œë ì†ë„
-	float lifetime = 5.0f; // í­íƒ„ì˜ ìˆ˜ëª…(ì´ˆ ë‹¨ìœ„)
+	float dropAcceleration = 200.0f; // µå¶ø °¡¼Óµµ(ÃÊ´ç ÇÈ¼¿ ´ÜÀ§)
+	float dropSpeed = 0.0f; // ÇöÀç µå¶ø ¼Óµµ
+	float lifetime = 5.0f; // ÆøÅºÀÇ ¼ö¸í(ÃÊ ´ÜÀ§)
 };

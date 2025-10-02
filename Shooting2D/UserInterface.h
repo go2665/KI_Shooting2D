@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include "Enums.h"
 
-// ëª¨ë“  ì‚¬ìš©ì ì¸í„°í˜ì´ìŠ¤ ìš”ì†Œì˜ ê¸°ë³¸ í´ë˜ìŠ¤ì…ë‹ˆë‹¤. 
+// ¸ğµç »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º ¿ä¼ÒÀÇ ±âº» Å¬·¡½ºÀÔ´Ï´Ù. 
 class UserInterface : public Actor
 {
 public:
@@ -15,10 +15,10 @@ public:
 	inline void SetAnchor(float x, float y) { anchor.X = x; anchor.Y = y; UpdatePosition(); }
 
 protected:
-	int width = 0;		// ì´ë¯¸ì§€ ì „ì²´ ë„ˆë¹„
-	int height = 0;		// ì´ë¯¸ì§€ ì „ì²´ ë†’ì´
-	PointF anchor = { 0.0f, 0.0f }; // ì´ë¯¸ì§€ ì•µì»¤ í¬ì¸íŠ¸
-	POINT anchoredPosition = { 0, 0 }; // ì•µì»¤ë¥¼ ê¸°ì¤€ìœ¼ë¡œí•œ ìœ„ì¹˜
+	int width = 0;		// ÀÌ¹ÌÁö ÀüÃ¼ ³Êºñ
+	int height = 0;		// ÀÌ¹ÌÁö ÀüÃ¼ ³ôÀÌ
+	PointF anchor = { 0.0f, 0.0f }; // ÀÌ¹ÌÁö ¾ŞÄ¿ Æ÷ÀÎÆ®
+	POINT anchoredPosition = { 0, 0 }; // ¾ŞÄ¿¸¦ ±âÁØÀ¸·ÎÇÑ À§Ä¡
 
 	void UpdatePosition();
 };

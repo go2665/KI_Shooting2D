@@ -3,7 +3,7 @@
 
 void UserInterface::UpdatePosition()
 {
-	// ì•µì»¤ì™€ í”¼ë´‡ì„ ê³ ë ¤	í•´ ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸
+	// ¾ŞÄ¿¿Í ÇÇº¿À» °í·Á	ÇØ À§Ä¡¸¦ ¾÷µ¥ÀÌÆ®
 	GameManager& gameManager = GameManager::Get();
 	Position.X = anchoredPosition.x + (anchor.X * gameManager.ScreenWidth) - (Pivot.X * width);
 	Position.Y = anchoredPosition.y + (anchor.Y * gameManager.ScreenHeight) - (Pivot.Y * height);

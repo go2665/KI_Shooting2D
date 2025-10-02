@@ -5,38 +5,38 @@
 
 void Bomb::OnInitialize()
 {
-	dropSpeed = 0.0f; // ì´ˆê¸° ë“œë ì†ë„ ì„¤ì •
+	dropSpeed = 0.0f; // ÃÊ±â µå¶ø ¼Óµµ ¼³Á¤
 
-	SetSize(GameManager::ActorDefaultSize / 2); // í¬ê¸° ì„¤ì •
+	SetSize(GameManager::ActorDefaultSize / 2); // Å©±â ¼³Á¤
 
 	float HalfSize = Size * 0.5f;
-	Position.X = static_cast<float>(HalfSize + rand() % (GameManager::ScreenWidth - Size)); // ëœë¤ X ìœ„ì¹˜ ì„¤ì •
-	Position.Y = static_cast<float>(-Size); // í™”ë©´ ìœ„ìª½ì—ì„œ ì‹œì‘
+	Position.X = static_cast<float>(HalfSize + rand() % (GameManager::ScreenWidth - Size)); // ·£´ı X À§Ä¡ ¼³Á¤
+	Position.Y = static_cast<float>(-Size); // È­¸é À§ÂÊ¿¡¼­ ½ÃÀÛ
 
 	//std::string debugMessage = "Bomb::position.X : " + std::to_string(position.X) + "\n";
 	//OutputDebugStringA(debugMessage.c_str());
 
-	Angle = 180.0f;	// íšŒì „ ì„¤ì •
+	Angle = 180.0f;	// È¸Àü ¼³Á¤
 
 	PhysicsComponent* physicsComponent = new PhysicsComponent(this, CollisionType::Rectangle, PhysicsLayer::Bomb);
 	physicsComponent->SetWidth(static_cast<float>(HalfSize));
 	physicsComponent->SetHeight(HalfSize * 0.75f);
-	AddComponent(physicsComponent); // ë¬¼ë¦¬ ì»´í¬ë„ŒíŠ¸ ì¶”ê°€
+	AddComponent(physicsComponent); // ¹°¸® ÄÄÆ÷³ÍÆ® Ãß°¡
 }
 
 void Bomb::OnTick(float deltaTime)
 {
-	Actor::OnTick(deltaTime); // ë¶€ëª¨ í´ë˜ìŠ¤ì˜ OnTick í˜¸ì¶œ
+	Actor::OnTick(deltaTime); // ºÎ¸ğ Å¬·¡½ºÀÇ OnTick È£Ãâ
 
-	dropSpeed += dropAcceleration * deltaTime; // ë“œë ì†ë„ ì—…ë°ì´íŠ¸
+	dropSpeed += dropAcceleration * deltaTime; // µå¶ø ¼Óµµ ¾÷µ¥ÀÌÆ®
 	//std::string debugMessage = "Bomb::OnTick called with deltaTime: " + std::to_string(dropSpeed) + "\n";
 	//OutputDebugStringA(debugMessage.c_str());
 
-	Position.Y += dropSpeed * deltaTime; // Y ìœ„ì¹˜ ì—…ë°ì´íŠ¸
+	Position.Y += dropSpeed * deltaTime; // Y À§Ä¡ ¾÷µ¥ÀÌÆ®
 
-	lifetime -= deltaTime; // ìˆ˜ëª… ê°ì†Œ
+	lifetime -= deltaTime; // ¼ö¸í °¨¼Ò
 
-	// í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ê±°ë‚˜ ìˆ˜ëª…ì´ ë‹¤ ëœ ê²½ìš° ì•¡í„° ì‚­ì œ
+	// È­¸é ¹ÛÀ¸·Î ³ª°¡°Å³ª ¼ö¸íÀÌ ´Ù µÈ °æ¿ì ¾×ÅÍ »èÁ¦
 	if (Position.Y > GameManager::ScreenHeight + Size || lifetime < 0.0f)
 	{
 		DestroyActor();
@@ -47,11 +47,11 @@ void Bomb::OnOverlap(Actor* other)
 {
 	if (other && other != this)
 	{
-		// í­íƒ„ê³¼ ë‹¤ë¥¸ ì•¡í„°ê°€ ê²¹ì¹  ë•Œ ì²˜ë¦¬
-		// ì˜ˆ: í­íƒ„ì´ í”Œë ˆì´ì–´ì™€ ê²¹ì¹˜ë©´ í”Œë ˆì´ì–´ì—ê²Œ í”¼í•´ë¥¼ ì£¼ê±°ë‚˜ ê²Œì„ ì˜¤ë²„ ì²˜ë¦¬
+		// ÆøÅº°ú ´Ù¸¥ ¾×ÅÍ°¡ °ãÄ¥ ¶§ Ã³¸®
+		// ¿¹: ÆøÅºÀÌ ÇÃ·¹ÀÌ¾î¿Í °ãÄ¡¸é ÇÃ·¹ÀÌ¾î¿¡°Ô ÇÇÇØ¸¦ ÁÖ°Å³ª °ÔÀÓ ¿À¹ö Ã³¸®
 		OutputDebugString(L"Bomb::OnOverlap called\n");
 		
-		// í­íƒ„ ì‚­ì œ
+		// ÆøÅº »èÁ¦
 		DestroyActor();
 	}
 }

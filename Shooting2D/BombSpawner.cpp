@@ -4,7 +4,7 @@
 
 void BombSpawner::OnInitialize()
 {
-	SetPosition(0, -100); // í™”ë©´ ë°–ì— ìœ„ì¹˜ ì„¤ì •. ì¤‘ìš”í•œê±´ ì•„ë‹˜.
+	SetPosition(0, -100); // È­¸é ¹Û¿¡ À§Ä¡ ¼³Á¤. Áß¿äÇÑ°Ç ¾Æ´Ô.
 	
 	timeSinceLastSpawn = 0.0f;
 	hasInitialDelayPassed = false;
@@ -12,29 +12,29 @@ void BombSpawner::OnInitialize()
 
 void BombSpawner::OnTick(float deltaTime)
 {
-    Actor::OnTick(deltaTime); // ë¶€ëª¨ í´ë˜ìŠ¤ì˜ OnTick í˜¸ì¶œ
+    Actor::OnTick(deltaTime); // ºÎ¸ğ Å¬·¡½ºÀÇ OnTick È£Ãâ
 
-    // ê²½ê³¼ ì‹œê°„ ì—…ë°ì´íŠ¸
+    // °æ°ú ½Ã°£ ¾÷µ¥ÀÌÆ®
     timeSinceLastSpawn += deltaTime;
 
-    // ì´ˆê¸° ì§€ì—° ì‹œê°„ì´ ì§€ë‚¬ëŠ”ì§€ í™•ì¸
+    // ÃÊ±â Áö¿¬ ½Ã°£ÀÌ Áö³µ´ÂÁö È®ÀÎ
     if (!hasInitialDelayPassed)
     {
         if (timeSinceLastSpawn > initialDelay)
         {
             hasInitialDelayPassed = true;
-            timeSinceLastSpawn = 0.0f; // íƒ€ì´ë¨¸ ë¦¬ì…‹
+            timeSinceLastSpawn = 0.0f; // Å¸ÀÌ¸Ó ¸®¼Â
         }
-        return; // ì´ˆê¸° ì§€ì—° ì‹œê°„ì´ ì§€ë‚˜ì§€ ì•Šì•˜ìœ¼ë©´ ì—¬ê¸°ì„œ ì¢…ë£Œ
+        return; // ÃÊ±â Áö¿¬ ½Ã°£ÀÌ Áö³ªÁö ¾Ê¾ÒÀ¸¸é ¿©±â¼­ Á¾·á
     }
 
-    // ì´ˆê¸° ì§€ì—° ì‹œê°„ì´ ì§€ë‚œ í›„ì˜ í­íƒ„ ìƒì„± ë¡œì§
+    // ÃÊ±â Áö¿¬ ½Ã°£ÀÌ Áö³­ ÈÄÀÇ ÆøÅº »ı¼º ·ÎÁ÷
     if (timeSinceLastSpawn > spawnInterval)
     {
-        // í­íƒ„ ìƒì„±
+        // ÆøÅº »ı¼º
         Bomb* newBomb = Factory::Get().SpawnActor<Bomb>(ResourceID::Bomb, RenderLayer::Bomb);
 
-        // íƒ€ì´ë¨¸ ë¦¬ì…‹ (ë‹¤ìŒ ìŠ¤í° ê°„ê²©ì„ ìœ„í•´)
+        // Å¸ÀÌ¸Ó ¸®¼Â (´ÙÀ½ ½ºÆù °£°İÀ» À§ÇØ)
         timeSinceLastSpawn -= spawnInterval;
     }
 }

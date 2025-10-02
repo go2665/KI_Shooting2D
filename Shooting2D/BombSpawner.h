@@ -11,10 +11,10 @@ public:
 	virtual void OnTick(float deltaTime) override;
 
 private:
-	float initialDelay = 2.0f;			// ì´ˆê¸° í­íƒ„ ìƒì„± ì§€ì—° ì‹œê°„
-	float spawnInterval = 0.1f;			// ì´ˆë‹¹ í­íƒ„ ìƒì„± ê°„ê²©
+	float initialDelay = 2.0f;			// ÃÊ±â ÆøÅº »ı¼º Áö¿¬ ½Ã°£
+	float spawnInterval = 0.1f;			// ÃÊ´ç ÆøÅº »ı¼º °£°İ
 
-	bool hasInitialDelayPassed = false;	// ì´ˆê¸° ì§€ì—° ì‹œê°„ì´ ì§€ë‚¬ëŠ”ì§€ ì—¬ë¶€
-	float timeSinceLastSpawn = 0.0f;	// ë§ˆì§€ë§‰ í­íƒ„ ìƒì„± ì´í›„ ê²½ê³¼ ì‹œê°„
+	bool hasInitialDelayPassed = false;	// ÃÊ±â Áö¿¬ ½Ã°£ÀÌ Áö³µ´ÂÁö ¿©ºÎ
+	float timeSinceLastSpawn = 0.0f;	// ¸¶Áö¸· ÆøÅº »ı¼º ÀÌÈÄ °æ°ú ½Ã°£
 };
 

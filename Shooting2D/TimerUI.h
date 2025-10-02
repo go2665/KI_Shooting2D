@@ -16,11 +16,11 @@ private:
 	void SetNumber(float number);
 	void RenderDigit(Gdiplus::Graphics* graphics, int digit, unsigned int index);
 
-	float targetNumber = 0.0f;	// ëª©í‘œ ìˆ«ì
-	float elapsedTime = 0.0f;	// ê²½ê³¼ ì‹œê°„
-	std::vector<int> digits;	// ê° ìë¦¬ ìˆ«ìë¥¼ ì €ì¥í•˜ëŠ” ë²¡í„°(0.0ì€ ë“¤ì–´ê°€ ìˆì–´ì•¼ í•˜ë¯€ë¡œ ìµœì†Œ 2ê°œ ìë¦¬ë¡œ ì˜ˆì•½)
-	std::vector<Gdiplus::Bitmap*> digitImages;	// ê° ìë¦¬ ìˆ«ì ì´ë¯¸ì§€
-	Gdiplus::Bitmap* dotImage = nullptr;		// ì†Œìˆ˜ì  ì´ë¯¸ì§€
+	float targetNumber = 0.0f;	// ¸ñÇ¥ ¼ıÀÚ
+	float elapsedTime = 0.0f;	// °æ°ú ½Ã°£
+	std::vector<int> digits;	// °¢ ÀÚ¸® ¼ıÀÚ¸¦ ÀúÀåÇÏ´Â º¤ÅÍ(0.0Àº µé¾î°¡ ÀÖ¾î¾ß ÇÏ¹Ç·Î ÃÖ¼Ò 2°³ ÀÚ¸®·Î ¿¹¾à)
+	std::vector<Gdiplus::Bitmap*> digitImages;	// °¢ ÀÚ¸® ¼ıÀÚ ÀÌ¹ÌÁö
+	Gdiplus::Bitmap* dotImage = nullptr;		// ¼Ò¼öÁ¡ ÀÌ¹ÌÁö
 
 };
 

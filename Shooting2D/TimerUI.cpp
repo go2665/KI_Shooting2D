@@ -4,31 +4,31 @@
 
 void TimerUI::OnInitialize()
 {
-	Actor::OnInitialize();	// ë¶€ëª¨ í´ë˜ìŠ¤ì˜ OnInitialize í˜¸ì¶œ
+	Actor::OnInitialize();	// ºÎ¸ğ Å¬·¡½ºÀÇ OnInitialize È£Ãâ
 	
-	SetSize(GameManager::ActorDefaultSize * 0.5f);	// í¬ê¸° ì„¤ì •
-	anchoredPosition = { -10, 10 };			// ì•µì»¤ë¥¼ ê¸°ì¤€ìœ¼ë¡œí•œ ìœ„ì¹˜ ì„¤ì •
-	anchor = { 1.0f, 0.0f };				// ì•µì»¤ í¬ì¸íŠ¸ë¥¼ ì˜¤ë¥¸ìª½ ìƒë‹¨ìœ¼ë¡œ ì„¤ì •
-	Pivot = { 1.0f, 0.0f };					// í”¼ë´‡ í¬ì¸íŠ¸ë¥¼ ì˜¤ë¥¸ìª½ ìƒë‹¨ìœ¼ë¡œ ì„¤ì •
+	SetSize(GameManager::ActorDefaultSize / 2);	// Å©±â ¼³Á¤
+	anchoredPosition = { -10, 10 };			// ¾ŞÄ¿¸¦ ±âÁØÀ¸·ÎÇÑ À§Ä¡ ¼³Á¤
+	anchor = { 1.0f, 0.0f };				// ¾ŞÄ¿ Æ÷ÀÎÆ®¸¦ ¿À¸¥ÂÊ »ó´ÜÀ¸·Î ¼³Á¤
+	Pivot = { 1.0f, 0.0f };					// ÇÇº¿ Æ÷ÀÎÆ®¸¦ ¿À¸¥ÂÊ »ó´ÜÀ¸·Î ¼³Á¤
 	width = Size * 4;
-	height = Size;							// ì „ì²´ ë„ˆë¹„ëŠ” 4ìë¦¬(0.00) * size, ë†’ì´ëŠ” sizeë¡œ ì„¤ì •
+	height = Size;							// ÀüÃ¼ ³Êºñ´Â 4ÀÚ¸®(0.00) * size, ³ôÀÌ´Â size·Î ¼³Á¤
 	UpdatePosition();
 	
-	digits.reserve(3);			// ìµœì†Œ 3ê°œ ìë¦¬ ìˆ«ìë¥¼ ì €ì¥í•  ìˆ˜ ìˆë„ë¡ ë²¡í„° ì˜ˆì•½(0.00)
-	digitImages.reserve(10);	// 0ë¶€í„° 9ê¹Œì§€ì˜ ìˆ«ì ì´ë¯¸ì§€ ì˜ˆì•½
-	// 0ë¶€í„° 9ê¹Œì§€ì˜ ìˆ«ì ì´ë¯¸ì§€ ë¡œë“œ
+	digits.reserve(3);			// ÃÖ¼Ò 3°³ ÀÚ¸® ¼ıÀÚ¸¦ ÀúÀåÇÒ ¼ö ÀÖµµ·Ï º¤ÅÍ ¿¹¾à(0.00)
+	digitImages.reserve(10);	// 0ºÎÅÍ 9±îÁöÀÇ ¼ıÀÚ ÀÌ¹ÌÁö ¿¹¾à
+	// 0ºÎÅÍ 9±îÁöÀÇ ¼ıÀÚ ÀÌ¹ÌÁö ·Îµå
 	for (int i = 0; i < 10; ++i)
 	{
 		digitImages.push_back(ResourceManager::Get().GetImage(static_cast<ResourceID>(static_cast<int>(ResourceID::Number0) + i)));
 	}
-	dotImage = ResourceManager::Get().GetImage(ResourceID::Dot); // ì†Œìˆ˜ì  ì´ë¯¸ì§€ ë¡œë“œ
+	dotImage = ResourceManager::Get().GetImage(ResourceID::Dot); // ¼Ò¼öÁ¡ ÀÌ¹ÌÁö ·Îµå
 }
 
 void TimerUI::OnTick(float deltaTime)
 {
 	Actor::OnTick(deltaTime);
-	elapsedTime += deltaTime; // ê²½ê³¼ ì‹œê°„ ì—…ë°ì´íŠ¸
-	SetNumber(elapsedTime); // ëª©í‘œ ìˆ«ìë¥¼ ì„¤ì •. 
+	elapsedTime += deltaTime; // °æ°ú ½Ã°£ ¾÷µ¥ÀÌÆ®
+	SetNumber(elapsedTime); // ¸ñÇ¥ ¼ıÀÚ¸¦ ¼³Á¤. 
 }
 
 void TimerUI::OnRender(Gdiplus::Graphics* graphics)
@@ -41,12 +41,12 @@ void TimerUI::OnRender(Gdiplus::Graphics* graphics)
 	{
 		if (i == 2)
 		{
-			// ì†Œìˆ˜ì  ê·¸ë¦¬ê¸°
+			// ¼Ò¼öÁ¡ ±×¸®±â
 			graphics->DrawImage(dotImage, static_cast<int>(Position.X) + indexOffset * Size, static_cast<int>(Position.Y), Size, Size);
 			indexOffset--;
 		}
 
-		RenderDigit(graphics, digits[i], indexOffset); // ê° ìë¦¬ ìˆ«ì ë Œë”ë§. digitsì—ëŠ” ìë¦¬ìˆ˜ê°€ ì—­ìœ¼ë¡œ ì €ì¥ë˜ì–´ ìˆìœ¼ë¯€ë¡œ, ê°€ì¥ ë†’ì€ ìë¦¬ë¶€í„° ë Œë”ë§
+		RenderDigit(graphics, digits[i], indexOffset); // °¢ ÀÚ¸® ¼ıÀÚ ·»´õ¸µ. digits¿¡´Â ÀÚ¸®¼ö°¡ ¿ªÀ¸·Î ÀúÀåµÇ¾î ÀÖÀ¸¹Ç·Î, °¡Àå ³ôÀº ÀÚ¸®ºÎÅÍ ·»´õ¸µ
 		indexOffset--;
 	}
 }
@@ -55,25 +55,25 @@ void TimerUI::SetNumber(float number)
 {
 	if (targetNumber != number)
 	{
-		targetNumber = number; // ëª©í‘œ ìˆ«ì ì—…ë°ì´íŠ¸
+		targetNumber = number; // ¸ñÇ¥ ¼ıÀÚ ¾÷µ¥ÀÌÆ®
 
-		digits.clear(); // ì´ì „ì— ì €ì¥ëœ ìˆ«ì ì œê±°
-		int number = static_cast<int>(targetNumber * 100.0f); // ì†Œìˆ˜ì  ë‘˜ì§¸ ìë¦¬ê¹Œì§€ ê³ ë ¤. ê·¸ ì•„ë˜ëŠ” ë²„ë¦¼ ì²˜ë¦¬
+		digits.clear(); // ÀÌÀü¿¡ ÀúÀåµÈ ¼ıÀÚ Á¦°Å
+		int number = static_cast<int>(targetNumber * 100.0f); // ¼Ò¼öÁ¡ µÑÂ° ÀÚ¸®±îÁö °í·Á. ±× ¾Æ·¡´Â ¹ö¸² Ã³¸®
 		do
 		{
-			digits.push_back(number % 10);	// í˜„ì¬ ìë¦¬ ìˆ«ìë¥¼ ì¶”ê°€
-			number /= 10;					// ë‹¤ìŒ ìë¦¬ë¡œ ì´ë™
-		} while (number > 0);	// ëª¨ë“  ìë¦¬ ìˆ«ìë¥¼ ì²˜ë¦¬í•  ë•Œê¹Œì§€ ë°˜ë³µ(targetNumberê°€ ì‹œì‘ë¶€í„° 0ì¸ ê²½ìš°ë¥¼ ëŒ€ë¹„í•´ do-whileì‚¬ìš©)
+			digits.push_back(number % 10);	// ÇöÀç ÀÚ¸® ¼ıÀÚ¸¦ Ãß°¡
+			number /= 10;					// ´ÙÀ½ ÀÚ¸®·Î ÀÌµ¿
+		} while (number > 0);	// ¸ğµç ÀÚ¸® ¼ıÀÚ¸¦ Ã³¸®ÇÒ ¶§±îÁö ¹İº¹(targetNumber°¡ ½ÃÀÛºÎÅÍ 0ÀÎ °æ¿ì¸¦ ´ëºñÇØ do-while»ç¿ë)
 
-		// ìµœì†Œ 0.00ì¶œë ¥ì´ ë˜ì–´ì•¼ í•œë‹¤.
-		const int minimumDigits = 3; // ìµœì†Œ 3ìë¦¬ ìˆ«ì(0.00) ë³´ì¥
+		// ÃÖ¼Ò 0.00Ãâ·ÂÀÌ µÇ¾î¾ß ÇÑ´Ù.
+		const int minimumDigits = 3; // ÃÖ¼Ò 3ÀÚ¸® ¼ıÀÚ(0.00) º¸Àå
 		int paddingCount = minimumDigits - (int)digits.size();
 		for(int i = 0; i < paddingCount; ++i)
 		{
-			digits.push_back(0);	// ë¶€ì¡±í•œ ìë¦¬ìˆ˜ëŠ” 0ìœ¼ë¡œ ì±„ì›€
+			digits.push_back(0);	// ºÎÁ·ÇÑ ÀÚ¸®¼ö´Â 0À¸·Î Ã¤¿ò
 		}
 
-		SetWidth(Size * (static_cast<int>(digits.size()) + 1)); // ë„ˆë¹„ëŠ” size * (ìë¦¬ìˆ˜ + ì†Œìˆ˜ì  ìë¦¬)
+		SetWidth(Size * (static_cast<int>(digits.size()) + 1)); // ³Êºñ´Â size * (ÀÚ¸®¼ö + ¼Ò¼öÁ¡ ÀÚ¸®)
 	}
 }
 
@@ -81,9 +81,9 @@ void TimerUI::RenderDigit(Gdiplus::Graphics* graphics, int digit, unsigned int i
 {
 	if( digit < 0 || digit > 9 )
 	{
-		return; // ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ë±ìŠ¤ë‚˜ ìˆ«ì ì²˜ë¦¬
+		return; // À¯È¿ÇÏÁö ¾ÊÀº ÀÎµ¦½º³ª ¼ıÀÚ Ã³¸®
 	}
 
-	// í”¼ë´‡ì€ ì™¼ìª½ ìƒë‹¨ìœ¼ë¡œ ì„¤ì •
+	// ÇÇº¿Àº ¿ŞÂÊ »ó´ÜÀ¸·Î ¼³Á¤
 	graphics->DrawImage(digitImages[digit], static_cast<int>(Position.X) + index * Size, static_cast<int>(Position.Y), Size, Size);
 }
