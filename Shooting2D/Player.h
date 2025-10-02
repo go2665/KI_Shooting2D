@@ -11,6 +11,7 @@ public:
 
 	virtual void OnTick(float InDeltaTime) override;
 	virtual void OnRender(Gdiplus::Graphics* InGraphics) override;
+	virtual void OnOverlap(Actor* InOther) override;
 
 	void HandleKeyState(WPARAM InKey, bool InIsPressed);
 

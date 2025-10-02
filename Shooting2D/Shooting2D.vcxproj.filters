@@ -81,6 +81,12 @@
     <ClInclude Include="PhysicsComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
+    <ClInclude Include="BombSpawner.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shooting2D.cpp">
@@ -112,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
       <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>ActorType</Filter>
+    </ClCompile>
+    <ClCompile Include="BombSpawner.cpp">
+      <Filter>ActorType</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
