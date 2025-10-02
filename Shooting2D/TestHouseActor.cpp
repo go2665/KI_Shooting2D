@@ -1,6 +1,6 @@
 #include "TestHouseActor.h"
 
-TestHouseActor::TestHouseActor()
+TestHouseActor::TestHouseActor(ResourceID _)
 	: Actor(ResourceID::None)
 {
     GreenPen = new Gdiplus::Pen(Gdiplus::Color(255, 0, 255, 0), 2.0f);

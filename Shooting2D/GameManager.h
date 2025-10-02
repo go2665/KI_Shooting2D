@@ -1,11 +1,13 @@
 #pragma once
 #include <Windows.h>
 #include <vector>
+#include <set>
 #include <map>
 #include "Common.h"
 #include "Actor.h"
 #include "Player.h"
 #include "Singleton.h"
+#include "TestGridActor.h"
 
 // 게임내 모든 액터를 관리해줄 클래스
 class GameManager : public Singleton<GameManager>
@@ -21,7 +23,8 @@ public:
 	void Render();
 	void HandleKeyState(WPARAM InKey, bool InIsPressed);
 
-	void AddActor(RenderLayer InRenderLayer, Actor* InActor) { Actors[InRenderLayer].push_back(InActor); }
+	void RegistActor(RenderLayer InLayer, Actor* InActor);
+	inline void RequestDestroy(Actor* DestroyTarget) { PendingDestroyActors.push_back(DestroyTarget); };
 
 	static constexpr unsigned int ScreenWidth = 600;
 	static constexpr unsigned int ScreenHeight = 800;
@@ -43,8 +46,12 @@ protected:
 private:
 	GameManager() = default;
 	virtual ~GameManager() = default;
+
+	void UnregisteActor(Actor* InActor);
+	void ProcessPendingDestroyActors();			// 삭제 예정인 액터들을 실제로 정리하는 함수
 			
-	std::map<RenderLayer, std::vector<Actor*>> Actors;
+	std::map<RenderLayer, std::set<Actor*>> Actors;
+	std::vector<Actor*> PendingDestroyActors;	// 삭제 예정인 액터들의 목록
 
 	HWND hMainWindow = nullptr;
 	Point AppPosition = Point(2000, 100);
@@ -52,5 +59,6 @@ private:
 	Gdiplus::Graphics* BackBufferGraphics = nullptr;  // 백버퍼용 종이에 그리기 위한 도구
 	
 	Player* MainPlayer = nullptr;
+	TestGridActor* TestGrid = nullptr;
 };
 

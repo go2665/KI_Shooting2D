@@ -16,14 +16,9 @@ void GameManager::Initialize()
         MessageBox(hMainWindow, L"백 버퍼 그래픽스 생성 실패", L"오류", MB_OK | MB_ICONERROR);
     }
 
-    Background* background = new Background(ResourceID::Background);
-    background->SetRenderLayer(RenderLayer::Background);
-    MainPlayer = new Player(ResourceID::Player);
-    AddActor(RenderLayer::Player, MainPlayer);
-    AddActor(RenderLayer::Background, background);
-    AddActor(RenderLayer::Test, new TestGridActor());
-
-    //Factory::Get().SpawnActor<Player>(ResourceID::Player);    
+    MainPlayer = Factory::Get().SpawnActor<Player>(ResourceID::Player, RenderLayer::Player);
+    Factory::Get().SpawnActor<Background>(ResourceID::Background, RenderLayer::Background);
+    TestGrid = Factory::Get().SpawnActor<TestGridActor>(ResourceID::None, RenderLayer::Test);
 }
 
 void GameManager::Destroy()
@@ -32,6 +27,7 @@ void GameManager::Destroy()
     {
         for (Actor* actor : pair.second)
         {
+            actor->OnDestroy();
             delete actor;
         }
         pair.second.clear();
@@ -45,7 +41,7 @@ void GameManager::Destroy()
 }
 
 void GameManager::Tick(float InDeltaTime)
-{
+{   
     for (const auto& pair : Actors)
     {
         for (Actor* actor : pair.second)
@@ -53,6 +49,7 @@ void GameManager::Tick(float InDeltaTime)
             actor->OnTick(InDeltaTime);
         }
     }
+    ProcessPendingDestroyActors();  // 삭제 예정인 액터들을 모두 삭제
 }
 
 void GameManager::Render()
@@ -74,4 +71,51 @@ void GameManager::Render()
 void GameManager::HandleKeyState(WPARAM InKey, bool InIsPressed)
 {
     MainPlayer->HandleKeyState(InKey, InIsPressed);
+
+    if (TestGrid)
+    {
+        TestGrid->DestroyActor();
+        TestGrid = nullptr;
+    }
+}
+
+void GameManager::RegistActor(RenderLayer InLayer, Actor* InActor)
+{
+    if (InActor)
+    {
+        Actors[InLayer].insert(InActor);
+    }
+}
+
+void GameManager::UnregisteActor(Actor* InActor)
+{
+    std::set<Actor*>& actorSet = Actors[InActor->GetRenderLayer()];
+    actorSet.erase(InActor);
+    
+    //for (size_t i = 0; i < actorSet.size(); i++)
+    //{
+    //    if (actorSet[i] == InActor)
+    //    {
+    //        if (i < actorSet.size() - 1)//마지막이 아니면
+    //        {
+    //            std::swap(actorSet[i], actorSet.back());
+    //        }
+    //        actorSet.pop_back();
+    //        break;
+    //    }
+    //}
+}
+
+void GameManager::ProcessPendingDestroyActors()
+{
+    for (Actor* actor : PendingDestroyActors)
+    {
+        if (actor)
+        {
+            UnregisteActor(actor);
+            actor->OnDestroy();
+            delete actor;
+        }
+    }
+    PendingDestroyActors.clear();
 }

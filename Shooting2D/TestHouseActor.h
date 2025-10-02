@@ -3,7 +3,7 @@
 class TestHouseActor : public Actor
 {
 public:
-	TestHouseActor();	
+	TestHouseActor(ResourceID _);
 	virtual ~TestHouseActor();
 	virtual void OnRender(Gdiplus::Graphics* InGraphics);
 

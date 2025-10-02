@@ -2,6 +2,7 @@
 #include <type_traits>
 #include "Singleton.h"
 #include "enums.h"
+#include "GameManager.h"
 
 // Actor 생성 전담 클래스
 class Factory : public Singleton<Factory>
@@ -17,6 +18,8 @@ public:
 	{
 		T* NewActor = new T(InID);
 		NewActor->SetRenderLayer(InLayer);
+		NewActor->OnInitialize();
+		GameManager::Get().RegistActor(InLayer, NewActor);
 
 		return NewActor;
 	}
