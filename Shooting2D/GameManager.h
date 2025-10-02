@@ -5,16 +5,16 @@
 #include "Common.h"
 #include "Actor.h"
 #include "Player.h"
+#include "Singleton.h"
 
 // 게임내 모든 액터를 관리해줄 클래스
-class GameManager
+class GameManager : public Singleton<GameManager>
 {
+	// friend : 다른 클래스가 자신의 private/protected 항목에 접근하는 것을 허용해준다.
+	// Singleton<GameManager>가 GameManager의 private에 접근 가능해진다.
+	friend class Singleton<GameManager>;
+
 public:
-	static GameManager& Get()
-	{
-		static GameManager instance;
-		return instance;
-	}
 	void Initialize();
 	void Destroy();
 	void Tick(float InDeltaTime);
@@ -41,15 +41,9 @@ public:
 	}
 protected:
 private:
-	// Singleton : 클래스의 인스턴스가 1개만 있는 클래스. 
-	// private에 생성자를 넣어서 밖에서 인스턴스화 하는 것을 원천적으로 봉쇄
 	GameManager() = default;
 	virtual ~GameManager() = default;
-	GameManager(const GameManager&) = delete;	// 복사 생성자 삭제
-	GameManager& operator=(const GameManager&) = delete; // 대입 연산자 삭제
-	GameManager(const GameManager&&) = delete;	// 이동 생성자 삭제
-	GameManager& operator=(const GameManager&&) = delete; // 이동 대입 연산자 삭제
-		
+			
 	std::map<RenderLayer, std::vector<Actor*>> Actors;
 
 	HWND hMainWindow = nullptr;
