@@ -14,7 +14,7 @@ public:
 	void DestroyActor();
 
 	virtual void OnInitialize() {};
-	virtual void OnDestroy() {};
+	virtual void OnDestroy();
 	virtual void OnTick(float InDeltaTime);
 	virtual void OnRender(Gdiplus::Graphics* InGraphics);
 

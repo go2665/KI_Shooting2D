@@ -2,21 +2,19 @@
 #include "Common.h"
 #include "GameManager.h"
 
-Player::Player(ResourceID InID)
-    : Actor(InID)
+void Player::OnInitialize()
 {
     Position.X = 300.0f;
     Position.Y = 700.0f;
     KeyWasPressedMap[InputDirection::Up] = false;
     KeyWasPressedMap[InputDirection::Down] = false;
     KeyWasPressedMap[InputDirection::Left] = false;
-    KeyWasPressedMap[InputDirection::Right] = false; 
+    KeyWasPressedMap[InputDirection::Right] = false;
 
     PhysicsComponent* physicsComponent = new PhysicsComponent(this, CollisionType::Circle, PhysicsLayer::Player);
     physicsComponent->SetRadius(static_cast<float>(Size * 0.5f)); // 반지름 설정
     AddComponent(physicsComponent); // 물리 컴포넌트 추가
 }
-
 
 void Player::OnTick(float InDeltaTime)
 {

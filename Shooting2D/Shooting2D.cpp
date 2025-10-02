@@ -40,12 +40,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ResourceManager::Get().Initialize();    // GameManager보다 먼저 초기화 되어야 함
     GameManager::Get().Initialize();
 
-    TestCollisionActor* Test1 = Factory::Get().SpawnActor<TestCollisionActor>(ResourceID::Test);
-    Test1->SetPosition(100, 100);
-    TestCollisionActor* Test2 = Factory::Get().SpawnActor<TestCollisionActor>(ResourceID::Test);
-    Test2->SetPosition(140, 140);
+    //TestCollisionActor* Test1 = Factory::Get().SpawnActor<TestCollisionActor>(ResourceID::Test);
+    //Test1->SetPosition(100, 100);
+    //TestCollisionActor* Test2 = Factory::Get().SpawnActor<TestCollisionActor>(ResourceID::Test);
+    //Test2->SetPosition(140, 140);
 
-    Test1->PrintTestResult(Test2);
+    //Test1->PrintTestResult(Test2);
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);

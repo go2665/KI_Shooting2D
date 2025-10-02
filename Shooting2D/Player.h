@@ -7,8 +7,9 @@ class Player : public Actor
 {
 public:
 	Player() = delete;
-	Player(ResourceID InID);
+	Player(ResourceID InID) : Actor(InID) {};
 
+	virtual void OnInitialize() override;
 	virtual void OnTick(float InDeltaTime) override;
 	virtual void OnRender(Gdiplus::Graphics* InGraphics) override;
 	virtual void OnOverlap(Actor* InOther) override;

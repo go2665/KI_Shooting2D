@@ -1,5 +1,6 @@
 #include "Bomb.h"
 #include "GameManager.h"
+#include "PhysicsComponent.h"
 //#include <string>
 
 void Bomb::OnInitialize()
