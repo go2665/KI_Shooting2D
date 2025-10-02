@@ -37,6 +37,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Gdiplus::GdiplusStartupInput StartupInput;
     Gdiplus::GdiplusStartup(&Token, &StartupInput, nullptr); 
 
+    ResourceManager::Get().Initialize();    // GameManager보다 먼저 초기화 되어야 함
     GameManager::Get().Initialize();
 
     // 전역 문자열을 초기화합니다.
@@ -82,6 +83,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     GameManager::Get().Destroy();
+    ResourceManager::Get().Destroy();
 
     // GDI+ 정리하기
     Gdiplus::GdiplusShutdown(Token);    

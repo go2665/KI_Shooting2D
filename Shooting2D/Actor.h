@@ -5,8 +5,8 @@ class Actor
 {
 public:
 	Actor() = delete;
-	Actor(const wchar_t* InImagePath);	// 무조건 파일 경로를 받아야 생성할 수 있다.
-	virtual ~Actor();
+	Actor(ResourceID InID);	// 무조건 파일 경로를 받아야 생성할 수 있다. -> ID를 통해 리소스 매니저에서 비트맵을 받아 오도록 처리
+	virtual ~Actor() = default;
 
 	virtual void OnTick(float InDeltaTime);
 	virtual void OnRender(Gdiplus::Graphics* InGraphics);

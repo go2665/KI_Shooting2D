@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ActorType">
+      <UniqueIdentifier>{8b2adfcf-4e3c-4a54-821a-053d8588e36f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -30,49 +33,55 @@
     <ClInclude Include="enums.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TestGridActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TestHouseActor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGridActor.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
+    <ClInclude Include="TestHouseActor.h">
+      <Filter>ActorType</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>ActorType</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shooting2D.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
+    <ClCompile Include="ResourceManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>ActorType</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ActorType</Filter>
     </ClCompile>
     <ClCompile Include="TestGridActor.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>ActorType</Filter>
     </ClCompile>
     <ClCompile Include="TestHouseActor.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>ActorType</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Background.cpp">
+      <Filter>ActorType</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

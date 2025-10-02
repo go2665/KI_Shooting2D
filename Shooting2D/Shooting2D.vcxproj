@@ -131,6 +131,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shooting2D.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestGridActor.h" />
@@ -141,6 +142,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shooting2D.cpp" />
     <ClCompile Include="TestGridActor.cpp" />
     <ClCompile Include="TestHouseActor.cpp" />

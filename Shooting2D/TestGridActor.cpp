@@ -2,7 +2,7 @@
 #include "GameManager.h"
 
 TestGridActor::TestGridActor()
-    :Actor(nullptr)
+    :Actor(ResourceID::None)
 {
     WindowWidth = GameManager::ScreenWidth;
     WindowHeight = GameManager::ScreenHeight;

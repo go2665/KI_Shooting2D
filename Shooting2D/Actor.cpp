@@ -1,30 +1,10 @@
 #include "Actor.h"
 #include "GameManager.h"
+#include "ResourceManager.h"
 
-Actor::Actor(const wchar_t* InImagePath)
+Actor::Actor(ResourceID InID)
 {
-    if(InImagePath)
-    {
-        Image = new Gdiplus::Bitmap(InImagePath); // 이미지 로딩
-        if (Image->GetLastStatus() != Gdiplus::Ok)
-        {
-            // 정상적으로 파일 로딩이 안됬다.
-            delete Image;       // 실패했으면 즉시 해제
-            Image = nullptr;
-            OutputDebugString(L"플레이어 이미지 로드 실패");
-            MessageBox(GameManager::Get().GetMainWindowHandle(), 
-                L"플레이어 이미지 로드 실패", L"오류", MB_OK | MB_ICONERROR);
-        }
-    }
-}
-
-Actor::~Actor()
-{
-    if (Image)
-    {
-        delete Image;
-        Image = nullptr;
-    }
+    Image = ResourceManager::Get().GetImage(InID);
 }
 
 void Actor::OnTick(float InDeltaTime)
