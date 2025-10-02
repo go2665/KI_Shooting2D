@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "TestGridActor.h"
 #include "ResourceManager.h"
+#include "Factory.h"
 
 void GameManager::Initialize()
 {
@@ -21,6 +22,8 @@ void GameManager::Initialize()
     AddActor(RenderLayer::Player, MainPlayer);
     AddActor(RenderLayer::Background, background);
     AddActor(RenderLayer::Test, new TestGridActor());
+
+    //Factory::Get().SpawnActor<Player>(ResourceID::Player);    
 }
 
 void GameManager::Destroy()
