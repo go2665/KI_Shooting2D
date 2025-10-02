@@ -10,6 +10,7 @@
 #include "Singleton.h"
 #include "TestGridActor.h"
 #include "BombSpawner.h"
+#include "TimerUI.h"
 
 // 게임내 모든 액터를 관리해줄 클래스
 class GameManager : public Singleton<GameManager>
@@ -65,6 +66,7 @@ private:
 	
 	Player* MainPlayer = nullptr;
 	BombSpawner* Spawner = nullptr;
+	TimerUI* Timer = nullptr;
 
 	TestGridActor* TestGrid = nullptr;
 

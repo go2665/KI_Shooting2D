@@ -22,6 +22,7 @@ void GameManager::Initialize()
     TestGrid = Factory::Get().SpawnActor<TestGridActor>(ResourceID::None, RenderLayer::Test);
 
     Spawner = Factory::Get().SpawnActor<BombSpawner>(ResourceID::None);
+    Timer = Factory::Get().SpawnActor<TimerUI>(ResourceID::None, RenderLayer::UI);
 }
 
 void GameManager::Destroy()

@@ -25,6 +25,9 @@
     <Filter Include="Component">
       <UniqueIdentifier>{42c62c7e-6fd3-4d14-8bc2-7cd74384aba5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UserInterface">
+      <UniqueIdentifier>{ede7cbcd-f8f4-481c-bc38-79d4658d8e58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -87,6 +90,12 @@
     <ClInclude Include="BombSpawner.h">
       <Filter>ActorType</Filter>
     </ClInclude>
+    <ClInclude Include="TimerUI.h">
+      <Filter>UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>UserInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shooting2D.cpp">
@@ -124,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="BombSpawner.cpp">
       <Filter>ActorType</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerUI.cpp">
+      <Filter>UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>UserInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
