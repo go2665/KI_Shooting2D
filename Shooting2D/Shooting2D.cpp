@@ -4,9 +4,9 @@
 #include "framework.h"
 #include "Shooting2D.h"
 
-//#include <crtdbg.h>
-//#define _CRTDBG_MAP_ALLOC
-//#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#include <crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 #define MAX_LOADSTRING 100
 

@@ -20,7 +20,12 @@ void Actor::OnDestroy()
 {
     while (!Components.empty())
     {
-        RemoveComponent(Components[0]); // 컴포넌트 제거
+        Component* ToDelete = Components.back();
+        Components.pop_back();
+        ToDelete->OnDestroy();
+        delete ToDelete;    // 아래보다는 이쪽이 빠를듯
+
+        //RemoveComponent(Components[0]); // 컴포넌트 제거
     }
     Components.clear(); // 컴포넌트 리스트 초기화
 }

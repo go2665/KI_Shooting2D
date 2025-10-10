@@ -8,6 +8,7 @@
 
 void GameManager::Initialize()
 {
+    // 관리할 객체들을 모두 생성
     BackBuffer = new Gdiplus::Bitmap(
         GameManager::ScreenWidth, GameManager::ScreenHeight, PixelFormat32bppARGB);
     BackBufferGraphics = Gdiplus::Graphics::FromImage(BackBuffer);
@@ -27,6 +28,12 @@ void GameManager::Initialize()
 
 void GameManager::Destroy()
 {
+    // 생성했던 모든 것들을 정리
+    Timer = nullptr;
+    Spawner = nullptr;
+    TestGrid = nullptr;
+    MainPlayer = nullptr;
+
     PhysicsComponents.clear(); // 물리 컴포넌트 리스트 초기화
     for (auto pair : Actors)
     {
@@ -43,9 +50,6 @@ void GameManager::Destroy()
     BackBufferGraphics = nullptr;
     delete BackBuffer;
     BackBuffer = nullptr;
-
-    Spawner = nullptr;
-    MainPlayer = nullptr;
 }
 
 void GameManager::Tick(float InDeltaTime)
@@ -84,11 +88,11 @@ void GameManager::HandleKeyState(WPARAM InKey, bool InIsPressed)
 {
     MainPlayer->HandleKeyState(InKey, InIsPressed);
 
-    if (TestGrid)
-    {
-        TestGrid->DestroyActor();
-        TestGrid = nullptr;
-    }
+    //if (TestGrid)
+    //{
+    //    TestGrid->DestroyActor();
+    //    TestGrid = nullptr;
+    //}
 }
 
 void GameManager::RegistActor(RenderLayer InLayer, Actor* InActor)
